@@ -1,0 +1,185 @@
+<style>
+    .anotation__item {
+        
+    }
+    .anotation__text {
+        width: 500px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .anotation__code {
+        width: calc(100% - 530px);
+        display: inline-block;
+        white-space: pre;
+        vertical-align: top;
+        background: #e3e2e2;
+        padding: 0 10px;
+        min-height: 100px;
+        border-bottom: 1px solid silver;
+    }
+</style>
+
+<div class="anotations">
+<div class="anotation__item">
+<div class="anotation__text">
+    <p>Тут редактируются группы окон. Это техническая часть, на цены она не влияет. Группы, это окна из левого меню. Каждая група, это отдельный главный пункт.</p>
+    <p>Имеются следующие поля</p>
+    <ul>
+        <li><b>max_width: </b>Максимальная ширина окна</li>
+        <li><b>min_width: </b>Минимальная ширина окна</li>
+        <li><b>max_height: </b>Максимальная высота окна</li>
+        <li><b>max_height: </b>Минимальная высота окна</li>
+        <li><b>name: </b>Отображаемое имя для окна</li>
+    </ul>
+    <p>Меню содержит под-пункты, в поле items</p>
+    <pre>
+        {
+            "type": Тип окна,
+            "count_choice": кол-во створок в окне,
+            "slug": техническое поле для идентификации,
+            "default": {
+                значения створок поумолчанию. 
+                Содержит значения для параметров 
+                "left", "center", "right" - левого, 
+                центрального и правого окна
+            }
+        }
+    </pre>
+</div>
+<div class="anotation__code">
+[
+    {
+        "groups": [
+            {
+                "name": "Одностворчатое окно",
+                "slug": "window1",
+                "items": [
+                    {
+                        "type": "Одностворчатое",
+                        "count_choice": 1,
+                        "slug": "window1_0",
+                        "default": {
+                            "center": "глухое"
+                        }
+                    },
+                    {
+                        "type": "Одностворчатое",
+                        "count_choice": 1,
+                        "slug": "window1_0",
+                        "default": {
+                            "center": "поворотное-Л"
+                        }
+                    },
+                    {
+                        "type": "Одностворчатое",
+                        "count_choice": 1,
+                        "slug": "window1_0",
+                        "default": {
+                            "center": "поворотное-откидное-Л"
+                        }
+                    }
+                ]
+            },
+            ............
+    </div>
+</div>
+ 
+    <div class="anotation__item">
+            <div class="anotation__text">
+                <h2>Цены за створки</h2>
+                <p>Каждый блок цены отвечает за параметры цены для определенной створки, имя которого содержится в параметре name</p>
+                <p>В параметре prices содержатся цены на выбранную створку с выбранным профилем</p>
+                <pre>
+                    {
+                        "name": "Название",
+                        "prices": {
+                            "профиль": цена
+                        }
+                    },
+                </pre>
+            </div>
+            <div class="anotation__code">
+        "prices": [
+            {
+                "name": "глухое",
+                "prices": {
+                    "KBE": 1000,
+                    "Rehau": 1500,
+                    "Trocal": 2000
+                }
+            },
+            {
+                "name": "поворотное-Л",
+                "prices": {
+                    "KBE": 1000,
+                    "Rehau": 1500,
+                    "Trocal": 2000
+                },
+                "mosquito": 10
+            },
+            ............
+        ],
+    </div></div>
+    <div class="anotation__item">
+            <div class="anotation__text">
+                <h2>Другие параметры калькулятора</h2>
+            </div>
+            <div class="anotation__code">
+        "other": {
+        </div></div>
+        <div class="anotation__item">
+                <div class="anotation__text"><p>Фиксированная цена за "комплектующие". Если цену не указать, галочки "комплектующие" не будет.</p></div>
+                <div class="anotation__code">
+            "Комплектующие": 2222,
+        </div></div>
+        <div class="anotation__item">
+                <div class="anotation__text"><p>Цена за кв. метр.</p></div>
+                <div class="anotation__code">
+            "Стоимость монтажа": 1500,
+        </div></div>
+        <div class="anotation__item">
+                <div class="anotation__text"><p>Цена за погонный метр</p></div>
+                <div class="anotation__code">
+            "Стоимость отделки под ключ": 300,
+        </div></div>
+        <div class="anotation__item">
+                <div class="anotation__text"><p>Скидка в процентах на итоговую стоимость в зависимости от выбранного профиля</p></div>
+                <div class="anotation__code">
+            
+            "Скидка": {
+                "KBE": 50,
+                "Rehau": 19,
+                "Trocal": 0
+            },
+        </div></div>
+        <div class="anotation__item">
+                <div class="anotation__text"><p>Цена за ламинацию. Цена устанавливается для всех цветов сразу.</p></div>
+                <div class="anotation__code">
+            "ЛаминацияЦена": 1000,
+        </div></div>
+        <div class="anotation__item">
+                <div class="anotation__text"><p>Список цветов для ламинации. Первый параметр название цвета, второй параметр цвет в HEX RGB</p></div>
+                <div class="anotation__code">
+            "Ламинация": {
+                "Белый": "#ffffff",
+                "Кремовый": "#fdf4e3",
+                "Светло-красный": "#bd2d0b",
+                "Красный": "#8f2400",
+                "Винно-красный": "#7e2b1d",
+                "Светло зеленый": "#026827",
+                "Зеленый": "#084533",
+                "Светло-синий": "#2d6284",
+                "Синий": "#28374a",
+                "Серый": "#989da0",
+                "Бледно-серый": "#cbced3",
+                "Светло-серый": "#b1b3a8",
+                "Серебро": "#9ca1a7",
+                "Антрацит": "#393a3f",
+                "Коричневый": "#311c1b",
+                "Темно-коричневый": "#2e2418",
+                "Черный": "#232220"
+            }
+        }
+    }
+]
+</div></div></div>
